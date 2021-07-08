@@ -1,2 +1,2 @@
-# homebrew-visualization-engine
-Grafana + InfluxDB bundle for Electronic Hydrometer reporting on Raspbian.
+# Homebrew Visualization Engine
+Automation which installs and configures Grafana and InfluxDB on the local Raspbian system. 
