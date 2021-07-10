@@ -117,8 +117,8 @@ if [[ $? -ne 0 ]]; then
 fi
 
 echo "Starting Python Script"
-chmod +x homebrew.py
-python3 ./homebrew.py -d "${database}" -s "${datasource}"
+chmod +x visualization_engine.py
+python3 ./visualization_engine.py -d "${database}" -s "${datasource}"
 
 echo "Changing admin user password"
 output=$(curl -s -X PUT -H "Content-Type: application/json" -d '{
