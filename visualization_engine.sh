@@ -114,6 +114,3 @@ output=$(curl -s -X PUT -H "Content-Type: application/json" -d '{
 if [[ $? -ne 0 ]]; then
   error "Unable to change Grafana admin user password.\n${output}"
 fi
-
-
-wget -cO - "https://github.com$(curl -s -L https://github.com/Akos-Kreutz/homebrew-visualization-engine/releases/latest | grep -o '/Akos-Kreutz/homebrew-visualization-engine/archive/refs/tags/.*.tar.gz')" > visualization-engine.tar.gz
