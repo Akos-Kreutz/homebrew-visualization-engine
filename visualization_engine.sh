@@ -56,22 +56,30 @@ fi
 
 echo "Installing Prerequisites"
 apt update
-if [[ output=$(apt -y install python3 python3-pip python-apt wget curl 2>&1 > /dev/null) -ne 0 ]]; then
+output=$(apt -y install python3 python3-pip python-apt wget curl 2>&1 > /dev/null)
+
+if [[ $? -ne 0 ]]; then
   error "Unable to install prerequisites.\n${output}"
 fi
 
 echo "Adding InfluxDB Repository Key"
-if [[ output=$(wget -qO- https://repos.influxdata.com/influxdb.key | sudo apt-key add - 2>&1 > /dev/null) -ne 0 ]]; then
+output=$(wget -qO- https://repos.influxdata.com/influxdb.key | sudo apt-key add - 2>&1 > /dev/null)
+
+if [[ $? -ne 0 ]]; then
   error "Unable to add InfluxDB Repository Key.\n${output}"
 fi
 
 echo "Adding Grafana Repository Key"
-if [[ output=$(wget -q -O - https://packages.grafana.com/gpg.key | sudo apt-key add - 2>&1 > /dev/null) -ne 0 ]]; then
+output=$(wget -q -O - https://packages.grafana.com/gpg.key | sudo apt-key add - 2>&1 > /dev/null)
+
+if [[ $? -ne 0 ]]; then
   error "Unable to add Grafana Repository Key.\n${output}"
 fi
 
 echo "Adding InfluxDB Repository to the source list"
-if [[ output=$(echo "deb https://repos.influxdata.com/debian buster stable" | sudo tee /etc/apt/sources.list.d/influxdb.list 2>&1 > /dev/null) -ne 0 ]]; then
+output=$(echo "deb https://repos.influxdata.com/debian buster stable" | sudo tee /etc/apt/sources.list.d/influxdb.list 2>&1 > /dev/null)
+
+if [[ $? -ne 0 ]]; then
   error "Unable to add InfluxDB Repository to the source list.\n${output}"
 fi
 
